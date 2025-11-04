@@ -1,10 +1,10 @@
 use std::{ops::Deref, path::PathBuf};
 
 use ruff_python_ast::{
-    statement_visitor::{walk_stmt, StatementVisitor},
     Expr, Mod, Stmt,
+    statement_visitor::{StatementVisitor, walk_stmt},
 };
-use ruff_python_parser::{parse, Mode};
+use ruff_python_parser::{Mode, parse};
 
 use super::error::ParsingError;
 use crate::filesystem::module_to_file_path;

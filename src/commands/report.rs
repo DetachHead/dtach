@@ -10,8 +10,8 @@ use thiserror::Error;
 use crate::cli;
 use crate::cli::create_clickable_link;
 use crate::colors::*;
-use crate::config::root_module::RootModuleTreatment;
 use crate::config::ProjectConfig;
+use crate::config::root_module::RootModuleTreatment;
 use crate::dependencies::LocatedImport;
 use crate::filesystem;
 use crate::interrupt::check_interrupt;
@@ -78,11 +78,7 @@ impl DependencyReport {
     }
 
     fn color_if_interactive(&self, color: &'static str) -> &'static str {
-        if cli::is_interactive() {
-            color
-        } else {
-            ""
-        }
+        if cli::is_interactive() { color } else { "" }
     }
 
     fn render_dependency(&self, dependency: &Dependency) -> String {
@@ -140,7 +136,6 @@ impl DependencyReport {
         let mut result = format!(
             "[ {title} ]\n\
             -------------------------------\n",
-            title = title,
         );
 
         if !skip_dependencies {
@@ -162,10 +157,8 @@ impl DependencyReport {
             };
             result.push_str(&format!(
                 "[ {deps_title} ]\n\
-                {deps}\n\
+                {deps_display}\n\
                 -------------------------------\n",
-                deps_title = deps_title,
-                deps = deps_display,
             ));
         }
 
@@ -188,10 +181,8 @@ impl DependencyReport {
             };
             result.push_str(&format!(
                 "[ {usages_title} ]\n\
-                {usages}\n\
+                {usages_display}\n\
                 -------------------------------\n",
-                usages_title = usages_title,
-                usages = usages_display,
             ));
         }
 

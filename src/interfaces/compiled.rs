@@ -22,9 +22,9 @@ impl CompiledInterface {
     }
 
     pub fn is_visible_to(&self, module_path: &str) -> bool {
-        self.visibility.as_ref().map_or(true, |visibility| {
-            visibility.iter().any(|v| v == module_path)
-        })
+        self.visibility
+            .as_ref()
+            .is_none_or(|visibility| visibility.iter().any(|v| v == module_path))
     }
 
     pub fn is_exposed_to(&self, member: &str, module_path: &str) -> bool {
@@ -50,12 +50,12 @@ impl<'a> CompiledInterfaces {
                 from_modules: interface
                     .from_modules
                     .iter()
-                    .map(|pattern| Regex::new(&format!("^{}$", pattern)).unwrap())
+                    .map(|pattern| Regex::new(&format!("^{pattern}$")).unwrap())
                     .collect(),
                 expose: interface
                     .expose
                     .iter()
-                    .map(|pattern| Regex::new(&format!("^{}$", pattern)).unwrap())
+                    .map(|pattern| Regex::new(&format!("^{pattern}$")).unwrap())
                     .collect(),
                 visibility: interface.visibility.clone(),
                 exclusive: interface.exclusive,

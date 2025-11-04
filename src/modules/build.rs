@@ -3,15 +3,15 @@ use std::path::PathBuf;
 use crate::{
     config::{ModuleConfig, RootModuleTreatment},
     filesystem,
-    resolvers::{glob, ModuleResolver},
+    resolvers::{ModuleResolver, glob},
 };
 
 use super::{
+    ModuleTree, ModuleTreeError,
     validation::{
         find_duplicate_modules, find_modules_with_cycles, find_visibility_violations,
         validate_root_module_treatment,
     },
-    ModuleTree, ModuleTreeError,
 };
 
 pub struct ModuleTreeBuilder<'a> {

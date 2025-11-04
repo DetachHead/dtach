@@ -1,7 +1,7 @@
 use lsp_types::notification::Notification;
 use lsp_types::request::Request;
 use lsp_types::{InitializeParams, Uri};
-use std::path::{PathBuf, MAIN_SEPARATOR_STR};
+use std::path::{MAIN_SEPARATOR_STR, PathBuf};
 use std::thread::JoinHandle;
 
 use lsp_server::{Connection, Message, Notification as NotificationMessage, RequestId};

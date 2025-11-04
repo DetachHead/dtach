@@ -1,7 +1,7 @@
 use std::collections::{HashMap, HashSet};
 
 use crate::config::ProjectConfig;
-use crate::dependencies::import::{with_distribution_names, ExternalImportWithDistributionNames};
+use crate::dependencies::import::{ExternalImportWithDistributionNames, with_distribution_names};
 use crate::diagnostics::{CodeDiagnostic, Diagnostic, DiagnosticDetails};
 use crate::diagnostics::{FileChecker, Result as DiagnosticResult};
 use crate::processors::file_module::FileModule;

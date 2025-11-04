@@ -1,4 +1,4 @@
-use crossbeam_channel::{bounded, Receiver};
+use crossbeam_channel::{Receiver, bounded};
 use once_cell::sync::Lazy;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Condvar, Mutex};
@@ -208,8 +208,10 @@ mod tests {
         }
 
         // Should not receive anything (timeout after 100ms)
-        assert!(receiver
-            .recv_timeout(std::time::Duration::from_millis(100))
-            .is_err());
+        assert!(
+            receiver
+                .recv_timeout(std::time::Duration::from_millis(100))
+                .is_err()
+        );
     }
 }

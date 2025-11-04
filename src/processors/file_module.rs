@@ -6,7 +6,7 @@ use std::{path::Path, sync::Arc};
 
 use crate::dependencies::{Dependency, NormalizedImport, SourceCodeReference};
 use crate::filesystem::ProjectFile;
-use crate::processors::ignore_directive::{get_ignore_directives, IgnoreDirectives};
+use crate::processors::ignore_directive::{IgnoreDirectives, get_ignore_directives};
 use crate::resolvers::Package;
 use crate::{config::ModuleConfig, modules::ModuleNode};
 

@@ -46,7 +46,9 @@ pub enum ConfigurationDiagnostic {
     #[error("Layer '{layer}' is not defined in the project.")]
     UnknownLayer { layer: String },
 
-    #[error("No first-party imports were found. You may need to use 'tach mod' to update your Python source roots. Docs: https://detachhead.github.io/dtach/usage/configuration#source-roots")]
+    #[error(
+        "No first-party imports were found. You may need to use 'tach mod' to update your Python source roots. Docs: https://detachhead.github.io/dtach/usage/configuration#source-roots"
+    )]
     NoFirstPartyImportsFound(),
 
     #[error("Unexpected error: No checks were enabled.")]
@@ -77,7 +79,9 @@ pub enum CodeDiagnostic {
         usage_module: String,
     },
 
-    #[error("The dependency '{dependency}' (from module '{definition_module}') matches an interface but does not match the expected data type ('{expected_data_type}').")]
+    #[error(
+        "The dependency '{dependency}' (from module '{definition_module}') matches an interface but does not match the expected data type ('{expected_data_type}')."
+    )]
     InvalidDataTypeExport {
         dependency: String,
         definition_module: String,
@@ -85,28 +89,36 @@ pub enum CodeDiagnostic {
         expected_data_type: String,
     },
 
-    #[error("Cannot use '{dependency}'. Module '{usage_module}' cannot depend on '{definition_module}'.")]
+    #[error(
+        "Cannot use '{dependency}'. Module '{usage_module}' cannot depend on '{definition_module}'."
+    )]
     UndeclaredDependency {
         dependency: String,
         usage_module: String,
         definition_module: String,
     },
 
-    #[error("Dependency '{dependency}' is deprecated. Module '{usage_module}' should not depend on '{definition_module}'.")]
+    #[error(
+        "Dependency '{dependency}' is deprecated. Module '{usage_module}' should not depend on '{definition_module}'."
+    )]
     DeprecatedDependency {
         dependency: String,
         usage_module: String,
         definition_module: String,
     },
 
-    #[error("Cannot use '{dependency}'. Module '{usage_module}' cannot depend on '{definition_module}'.")]
+    #[error(
+        "Cannot use '{dependency}'. Module '{usage_module}' cannot depend on '{definition_module}'."
+    )]
     ForbiddenDependency {
         dependency: String,
         usage_module: String,
         definition_module: String,
     },
 
-    #[error("Cannot use '{dependency}'. Layer '{usage_layer}' ('{usage_module}') is lower than layer '{definition_layer}' ('{definition_module}').")]
+    #[error(
+        "Cannot use '{dependency}'. Layer '{usage_layer}' ('{usage_module}') is lower than layer '{definition_layer}' ('{definition_module}')."
+    )]
     LayerViolation {
         dependency: String,
         usage_module: String,
@@ -115,7 +127,9 @@ pub enum CodeDiagnostic {
         definition_layer: String,
     },
 
-    #[error("Cannot use '{dependency}'. Layer '{usage_layer}' ('{usage_module}') cannot import from layer '{definition_layer}' ('{definition_module}') because layer '{closed_layer}' is a closed layer between them.")]
+    #[error(
+        "Cannot use '{dependency}'. Layer '{usage_layer}' ('{usage_module}') cannot import from layer '{definition_layer}' ('{definition_module}') because layer '{closed_layer}' is a closed layer between them."
+    )]
     ClosedLayerViolation {
         dependency: String,
         usage_module: String,
@@ -276,8 +290,8 @@ pub enum DiagnosticDetails {
 impl Display for DiagnosticDetails {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            DiagnosticDetails::Code(code) => write!(f, "{}", code),
-            DiagnosticDetails::Configuration(config) => write!(f, "{}", config),
+            DiagnosticDetails::Code(code) => write!(f, "{code}"),
+            DiagnosticDetails::Configuration(config) => write!(f, "{config}"),
         }
     }
 }

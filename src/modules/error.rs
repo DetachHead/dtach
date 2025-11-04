@@ -16,7 +16,9 @@ pub enum ModuleTreeError {
         "Failed to build module tree. The following modules were defined more than once: {0:?}"
     )]
     DuplicateModules(Vec<String>),
-    #[error("Module configuration error: Visibility configuration conflicts with dependency configuration.")]
+    #[error(
+        "Module configuration error: Visibility configuration conflicts with dependency configuration."
+    )]
     VisibilityViolation(Vec<VisibilityErrorInfo>),
     #[error("Circular dependency detected: {0:?}")]
     CircularDependency(Vec<String>),

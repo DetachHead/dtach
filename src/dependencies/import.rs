@@ -110,11 +110,13 @@ where
             let default_distribution_names =
                 match package_resolver.resolve_module_path(&import.module_path) {
                     PackageResolution::Found { package, .. } => {
-                        vec![package
-                            .name
-                            .as_ref()
-                            .map(|name| normalize_package_name(name))
-                            .unwrap_or_else(|| top_level_module_name.clone())]
+                        vec![
+                            package
+                                .name
+                                .as_ref()
+                                .map(|name| normalize_package_name(name))
+                                .unwrap_or_else(|| top_level_module_name.clone()),
+                        ]
                     }
                     PackageResolution::NotFound | PackageResolution::Excluded => {
                         vec![top_level_module_name.clone()]

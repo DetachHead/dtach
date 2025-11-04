@@ -9,7 +9,7 @@ use std::{
 use globset::GlobMatcher;
 use pyo3::prelude::*;
 use serde::ser::{Error, SerializeSeq, SerializeStruct};
-use serde::{de, Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Deserializer, Serialize, Serializer, de};
 
 use super::root_module::ROOT_MODULE_SENTINEL_TAG;
 use crate::filesystem::module_path_is_included_in_paths;

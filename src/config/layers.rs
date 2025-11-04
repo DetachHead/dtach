@@ -3,7 +3,7 @@ use std::hash::{Hash, Hasher};
 
 use pyo3::prelude::*;
 use serde::ser::SerializeStruct;
-use serde::{de, Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Deserializer, Serialize, de};
 
 #[derive(Clone, Debug, Default)]
 #[pyclass(module = "tach.extension")]

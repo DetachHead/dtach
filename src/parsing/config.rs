@@ -8,8 +8,8 @@ use rayon::prelude::*;
 use crate::{
     colors::BColors,
     config::{
-        project::PyProjectWrapper, root_module::ROOT_MODULE_SENTINEL_TAG, ConfigLocation,
-        DomainConfig, InterfaceConfig, InterfaceDataTypes, LocatedDomainConfig, ProjectConfig,
+        ConfigLocation, DomainConfig, InterfaceConfig, InterfaceDataTypes, LocatedDomainConfig,
+        ProjectConfig, project::PyProjectWrapper, root_module::ROOT_MODULE_SENTINEL_TAG,
     },
     filesystem::{self, read_file_content},
     python::parsing::parse_interface_members,
@@ -196,7 +196,7 @@ mod tests {
     use super::*;
     use crate::{
         config::{
-            project::DEFAULT_EXCLUDE_PATHS, root_module::ROOT_MODULE_SENTINEL_TAG, DependencyConfig,
+            DependencyConfig, project::DEFAULT_EXCLUDE_PATHS, root_module::ROOT_MODULE_SENTINEL_TAG,
         },
         tests::fixtures::example_dir,
     };

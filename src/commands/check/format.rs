@@ -152,8 +152,8 @@ fn format_diagnostic_group(group: &mut DiagnosticGroup) -> String {
         .join("\n");
 
     match &group.footer {
-        Some(footer) => format!("{}\n{}\n\n{}", header, diagnostics, footer),
-        None => format!("{}\n{}", header, diagnostics),
+        Some(footer) => format!("{header}\n{diagnostics}\n\n{footer}"),
+        None => format!("{header}\n{diagnostics}"),
     }
 }
 

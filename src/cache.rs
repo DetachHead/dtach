@@ -105,7 +105,9 @@ fn parse_project_dependencies<P: AsRef<Path>>(project_root: P) -> impl Iterator<
     }
 
     // Didn't find any dependencies
-    println!("Did not auto-detect dependencies. Is there a 'requirements.txt' or 'pyproject.toml' in your project root?");
+    println!(
+        "Did not auto-detect dependencies. Is there a 'requirements.txt' or 'pyproject.toml' in your project root?"
+    );
 
     vec![].into_iter()
 }
@@ -123,7 +125,7 @@ fn read_file_dependencies(
 fn read_env_dependencies(env_dependencies: Vec<String>) -> impl Iterator<Item = String> {
     env_dependencies.into_iter().map(|var| {
         let value = env::var(&var).unwrap_or_else(|_| "".to_string());
-        format!("{}={}", var, value)
+        format!("{var}={value}")
     })
 }
 
