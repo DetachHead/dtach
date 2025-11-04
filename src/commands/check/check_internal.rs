@@ -208,7 +208,7 @@ pub fn check(
                                     file_path: file_path.display().to_string(),
                                 },
                             ),
-                        )]
+                        )];
                     }
                 };
 

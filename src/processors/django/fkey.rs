@@ -1,7 +1,7 @@
 use std::path::PathBuf;
 
-use ruff_python_ast::visitor::Visitor;
 use ruff_python_ast::Mod;
+use ruff_python_ast::visitor::Visitor;
 use thiserror::Error;
 
 use crate::config::plugins::django::DjangoConfig;
@@ -91,7 +91,7 @@ impl InstalledAppVisitor {
 
 impl Visitor<'_> for InstalledAppVisitor {
     fn visit_stmt(&mut self, stmt: &ruff_python_ast::Stmt) {
-        if let ruff_python_ast::Stmt::Assign(ref assign) = stmt {
+        if let ruff_python_ast::Stmt::Assign(assign) = stmt {
             if assign.targets.len() == 1 {
                 let target = &assign.targets[0];
                 if let ruff_python_ast::Expr::Name(name) = target {
