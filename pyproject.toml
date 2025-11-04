@@ -1,6 +1,6 @@
 [project]
 name = "dtach"
-version = "0.31.0"
+version = "0.31.1"
 authors = [
     { name = "detachhead", email = "detachhead@users.noreply.github.com" },
 ]
