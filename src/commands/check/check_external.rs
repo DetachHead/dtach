@@ -9,8 +9,8 @@ use crate::diagnostics::{
 use crate::filesystem::{self, ProjectFile};
 use crate::interrupt::check_interrupt;
 use crate::modules::{ModuleTree, ModuleTreeBuilder};
-use crate::processors::file_module::FileModule;
 use crate::processors::ExternalDependencyExtractor;
+use crate::processors::file_module::FileModule;
 use crate::resolvers::{PackageResolver, SourceRootResolver};
 use pyo3::prelude::*;
 use std::collections::{HashMap, HashSet};
@@ -250,7 +250,7 @@ fn check_with_modules(
                                     file_path: file_path.display().to_string(),
                                 },
                             ),
-                        )]
+                        )];
                     }
                 };
 

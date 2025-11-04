@@ -1,7 +1,7 @@
 use std::fs;
 use std::io;
 use std::path::StripPrefixError;
-use std::path::{Path, PathBuf, MAIN_SEPARATOR, MAIN_SEPARATOR_STR};
+use std::path::{MAIN_SEPARATOR, MAIN_SEPARATOR_STR, Path, PathBuf};
 
 use cached::proc_macro::cached;
 use globset::Glob;
@@ -10,8 +10,8 @@ use ignore;
 use itertools::Itertools;
 use thiserror::Error;
 
-use crate::config::root_module::ROOT_MODULE_SENTINEL_TAG;
 use crate::config::ModuleConfig;
+use crate::config::root_module::ROOT_MODULE_SENTINEL_TAG;
 
 #[derive(Error, Debug)]
 pub enum FileSystemError {
@@ -340,7 +340,10 @@ impl FSWalker {
         self.overrides.matched(path.as_ref(), is_dir).is_ignore()
     }
 
-    fn walk_non_excluded_paths(&self, root: &str) -> impl Iterator<Item = ignore::DirEntry> {
+    fn walk_non_excluded_paths(
+        &self,
+        root: &str,
+    ) -> impl Iterator<Item = ignore::DirEntry> + use<> {
         let mut builder = self.walk_builder.clone();
         let owned_root = root.to_string();
         let overrides = self.overrides.clone();
@@ -364,11 +367,16 @@ impl FSWalker {
 
     pub fn walk_dirs(&self, root: &str) -> impl Iterator<Item = PathBuf> {
         self.walk_non_excluded_paths(root)
-            .filter(|entry| entry.file_type().map(|t| t.is_dir()).unwrap_or(false))
+            .filter(|entry| {
+                entry
+                    .file_type()
+                    .map(|t: fs::FileType| t.is_dir())
+                    .unwrap_or(false)
+            })
             .map(|entry| entry.into_path())
     }
 
-    pub fn walk_pyfiles(&self, root: &str) -> impl Iterator<Item = PathBuf> {
+    pub fn walk_pyfiles(&self, root: &str) -> impl Iterator<Item = PathBuf> + use<> {
         let prefix = root.to_string();
         self.walk_non_excluded_paths(root)
             .filter(|entry| {

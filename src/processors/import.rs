@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 use std::path::{Path, PathBuf};
 
-use ruff_python_ast::statement_visitor::{walk_stmt, StatementVisitor};
+use ruff_python_ast::statement_visitor::{StatementVisitor, walk_stmt};
 use ruff_python_ast::visitor::Visitor;
 use ruff_python_ast::{Expr, Mod, Stmt, StmtIf, StmtImport, StmtImportFrom};
 use thiserror::Error;
@@ -150,10 +150,10 @@ impl ImportVisitor {
 
     fn should_ignore_if_statement(&mut self, node: &StmtIf) -> bool {
         let id = match node.test.as_ref() {
-            Expr::Name(ref name) => Some(name.id.as_str()),
+            Expr::Name(name) => Some(name.id.as_str()),
             // This will match a single-level attribute access in cases like:
             // import typing as t; if t.TYPE_CHECKING: ...
-            Expr::Attribute(ref attribute) => Some(attribute.attr.as_str()),
+            Expr::Attribute(attribute) => Some(attribute.attr.as_str()),
             _ => None,
         };
         id.unwrap_or_default() == "TYPE_CHECKING" && self.ignore_type_checking_imports
@@ -251,7 +251,7 @@ pub fn get_normalized_imports_from_ast<P: AsRef<Path>>(
     let mut string_import_visitor = StringImportVisitor::new(source_roots);
 
     match file_ast {
-        Mod::Module(ref module) => {
+        Mod::Module(module) => {
             import_visitor.visit_body(&module.body);
             if include_string_imports {
                 string_import_visitor.visit_body(&module.body);
@@ -338,12 +338,16 @@ from another.module import Class as AliasedClass
 
         assert_eq!(result.len(), 3);
         assert!(result.iter().any(|import| import.module_path == "os"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "local.module.function"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "another.module.Class"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "local.module.function")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "another.module.Class")
+        );
     }
 
     #[rstest]
@@ -371,12 +375,16 @@ from actual.module import RealClass
         .unwrap();
 
         assert_eq!(result.len(), 2);
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "typing.List"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "actual.module.RealClass"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "typing.List")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "actual.module.RealClass")
+        );
 
         // Test with type checking imports included
         let result = get_normalized_imports(
@@ -390,18 +398,26 @@ from actual.module import RealClass
 
         assert_eq!(result.len(), 4);
 
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "typing.List"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "local.module.TypeClass"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "another.module.Interface"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "actual.module.RealClass"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "typing.List")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "local.module.TypeClass")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "another.module.Interface")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "actual.module.RealClass")
+        );
     }
 
     #[rstest]
@@ -430,15 +446,21 @@ from .other import child
         .unwrap();
 
         assert_eq!(result.len(), 3);
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package.submodule.sibling"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package.parent"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package.submodule.other.child"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package.submodule.sibling")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package.parent")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package.submodule.other.child")
+        );
     }
 
     #[rstest]
@@ -476,12 +498,16 @@ MODULES = [
         )
         .unwrap();
         assert_eq!(result.len(), 2);
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package.module.submodule"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "another.module.function"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package.module.submodule")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "another.module.function")
+        );
     }
 
     #[rstest]
@@ -509,12 +535,16 @@ from package2 import module2
         .unwrap();
 
         assert_eq!(result.len(), 2);
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package1.module1"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package2.module2"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package1.module1")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package2.module2")
+        );
     }
 
     #[rstest]
@@ -544,12 +574,16 @@ from .module2 import func2
         .unwrap();
 
         assert_eq!(result.len(), 2);
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package.module1.func1"));
-        assert!(result
-            .iter()
-            .any(|import| import.module_path == "package.module2.func2"));
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package.module1.func1")
+        );
+        assert!(
+            result
+                .iter()
+                .any(|import| import.module_path == "package.module2.func2")
+        );
     }
 
     #[rstest]
@@ -594,12 +628,16 @@ if True:
             .filter(|import| import.is_global_scope)
             .collect();
         assert_eq!(global_imports.len(), 2);
-        assert!(global_imports
-            .iter()
-            .any(|import| import.module_path == "os"));
-        assert!(global_imports
-            .iter()
-            .any(|import| import.module_path == "sys.path"));
+        assert!(
+            global_imports
+                .iter()
+                .any(|import| import.module_path == "os")
+        );
+        assert!(
+            global_imports
+                .iter()
+                .any(|import| import.module_path == "sys.path")
+        );
 
         // Check non-global scope imports
         let non_global_imports: Vec<_> = result
@@ -607,23 +645,35 @@ if True:
             .filter(|import| !import.is_global_scope)
             .collect();
         assert_eq!(non_global_imports.len(), 8);
-        assert!(non_global_imports
-            .iter()
-            .any(|import| import.module_path == "datetime"));
-        assert!(non_global_imports
-            .iter()
-            .any(|import| import.module_path == "json.loads"));
-        assert!(non_global_imports
-            .iter()
-            .any(|import| import.module_path == "re"));
-        assert!(non_global_imports
-            .iter()
-            .any(|import| import.module_path == "math.sqrt"));
-        assert!(non_global_imports
-            .iter()
-            .any(|import| import.module_path == "random"));
-        assert!(non_global_imports
-            .iter()
-            .any(|import| import.module_path == "itertools.chain"));
+        assert!(
+            non_global_imports
+                .iter()
+                .any(|import| import.module_path == "datetime")
+        );
+        assert!(
+            non_global_imports
+                .iter()
+                .any(|import| import.module_path == "json.loads")
+        );
+        assert!(
+            non_global_imports
+                .iter()
+                .any(|import| import.module_path == "re")
+        );
+        assert!(
+            non_global_imports
+                .iter()
+                .any(|import| import.module_path == "math.sqrt")
+        );
+        assert!(
+            non_global_imports
+                .iter()
+                .any(|import| import.module_path == "random")
+        );
+        assert!(
+            non_global_imports
+                .iter()
+                .any(|import| import.module_path == "itertools.chain")
+        );
     }
 }
