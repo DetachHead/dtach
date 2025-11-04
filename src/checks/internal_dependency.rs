@@ -1,7 +1,7 @@
 use crate::{
     config::{
-        root_module::RootModuleTreatment, DependencyConfig, LayerConfig, ModuleConfig,
-        ProjectConfig, RuleSetting,
+        DependencyConfig, LayerConfig, ModuleConfig, ProjectConfig, RuleSetting,
+        root_module::RootModuleTreatment,
     },
     dependencies::Dependency,
     diagnostics::{

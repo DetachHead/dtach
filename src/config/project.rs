@@ -15,7 +15,7 @@ use super::external::ExternalDependencyConfig;
 use super::interfaces::InterfaceConfig;
 use super::layers::LayerConfig;
 use super::map::MapConfig;
-use super::modules::{deserialize_modules, serialize_modules, DependencyConfig, ModuleConfig};
+use super::modules::{DependencyConfig, ModuleConfig, deserialize_modules, serialize_modules};
 use super::plugins::PluginsConfig;
 use super::root_module::RootModuleTreatment;
 use super::rules::RulesConfig;
@@ -496,7 +496,7 @@ impl ProjectConfig {
     }
 
     fn __str__(&self) -> String {
-        format!("{:#?}", self)
+        format!("{self:#?}")
     }
 
     fn serialize_json(&self) -> String {

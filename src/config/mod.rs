@@ -21,7 +21,7 @@ pub use external::ExternalDependencyConfig;
 pub use interfaces::{InterfaceConfig, InterfaceDataTypes};
 pub use layers::LayerConfig;
 pub use map::MapConfig;
-pub use modules::{serialize_modules_json, DependencyConfig, ModuleConfig};
+pub use modules::{DependencyConfig, ModuleConfig, serialize_modules_json};
 pub use plugins::PluginsConfig;
 pub use project::ProjectConfig;
 pub use root_module::RootModuleTreatment;

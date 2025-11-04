@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
-use crate::config::root_module::{RootModuleTreatment, ROOT_MODULE_SENTINEL_TAG};
 use crate::config::ModuleConfig;
+use crate::config::root_module::{ROOT_MODULE_SENTINEL_TAG, RootModuleTreatment};
 use petgraph::algo::kosaraju_scc;
 use petgraph::graphmap::DiGraphMap;
 
@@ -140,7 +140,11 @@ pub fn validate_root_module_treatment(
                 Err(ModuleTreeError::RootModuleViolation(format!(
                     "The root module ('{}') is forbidden, but was found in module configuration for modules: {}.",
                     ROOT_MODULE_SENTINEL_TAG,
-                    root_module_violations.into_iter().map(|module| format!("'{}'", module)).collect::<Vec<_>>().join(", ")
+                    root_module_violations
+                        .into_iter()
+                        .map(|module| format!("'{module}'"))
+                        .collect::<Vec<_>>()
+                        .join(", ")
                 )))
             }
         }
@@ -164,7 +168,11 @@ pub fn validate_root_module_treatment(
                 Err(ModuleTreeError::RootModuleViolation(format!(
                     "The root module ('{}') is set to allow dependencies only, but was found as a dependency in: {}.",
                     ROOT_MODULE_SENTINEL_TAG,
-                    root_module_violations.into_iter().map(|module| format!("'{}'", module)).collect::<Vec<_>>().join(", ")
+                    root_module_violations
+                        .into_iter()
+                        .map(|module| format!("'{module}'"))
+                        .collect::<Vec<_>>()
+                        .join(", ")
                 )))
             }
         }

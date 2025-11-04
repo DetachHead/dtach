@@ -54,7 +54,9 @@ fn extract_dependencies(toml_value: &Value) -> HashSet<String> {
 
     // Print warning if both formats are detected
     if has_project_deps && has_poetry_deps {
-        eprintln!("Warning: Both project dependencies and Poetry dependencies detected. Using project dependencies.");
+        eprintln!(
+            "Warning: Both project dependencies and Poetry dependencies detected. Using project dependencies."
+        );
     } else if has_poetry_deps {
         // Extract Poetry dependencies only if project dependencies are not present
         if let Some(deps) = toml_value

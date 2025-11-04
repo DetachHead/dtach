@@ -1,12 +1,12 @@
 use std::path::PathBuf;
 
+use crate::config::ProjectConfig;
 use crate::config::plugins::django::DjangoConfig;
 use crate::config::root_module::RootModuleTreatment;
-use crate::config::ProjectConfig;
 use crate::diagnostics::{DiagnosticError, FileProcessor, Result as DiagnosticResult};
 use crate::filesystem::{self, ProjectFile};
-use crate::modules::error::ModuleTreeError;
 use crate::modules::ModuleTree;
+use crate::modules::error::ModuleTreeError;
 use crate::python::parsing::parse_python_source;
 use crate::resolvers::{PackageResolution, PackageResolver};
 
@@ -81,7 +81,7 @@ impl<'a> FileProcessor<'a, ProjectFile<'a>> for InternalDependencyExtractor<'a> 
             None => {
                 return Err(DiagnosticError::PackageNotFound(
                     file_path.source_root.display().to_string(),
-                ))
+                ));
             }
         };
 
@@ -187,7 +187,7 @@ impl<'a> FileProcessor<'a, ProjectFile<'a>> for ExternalDependencyExtractor<'a> 
             None => {
                 return Err(DiagnosticError::PackageNotFound(
                     file_path.source_root.display().to_string(),
-                ))
+                ));
             }
         };
         let mut file_module = FileModule::new(file_path, module, package);

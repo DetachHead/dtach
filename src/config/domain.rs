@@ -9,7 +9,7 @@ use crate::filesystem::file_to_module_path;
 
 use super::edit::{ConfigEdit, ConfigEditor, EditError};
 use super::interfaces::InterfaceConfig;
-use super::modules::{deserialize_modules, serialize_modules, DependencyConfig, ModuleConfig};
+use super::modules::{DependencyConfig, ModuleConfig, deserialize_modules, serialize_modules};
 use crate::parsing::error::ParsingError;
 
 #[derive(Debug, Default, Serialize, Deserialize, Clone, PartialEq)]
@@ -231,7 +231,7 @@ impl LocatedDomainConfig {
                 .unwrap()
                 .to_string();
         } else {
-            return format!("//{}", module_path);
+            return format!("//{module_path}");
         }
     }
 }

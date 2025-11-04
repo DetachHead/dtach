@@ -6,7 +6,7 @@ use crate::python::parsing::parse_python_source;
 use std::collections::HashMap;
 use std::path::PathBuf;
 
-use ruff_python_ast::{statement_visitor::StatementVisitor, Expr, Mod, Stmt};
+use ruff_python_ast::{Expr, Mod, Stmt, statement_visitor::StatementVisitor};
 
 #[derive(Debug, Clone)]
 pub enum TypeCheckResult {

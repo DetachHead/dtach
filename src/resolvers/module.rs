@@ -34,7 +34,7 @@ impl ModuleGlob {
         }
 
         // Add allowed file extensions to the pattern
-        pattern = format!("{}{{,.py,.pyi}}", pattern);
+        pattern = format!("{pattern}{{,.py,.pyi}}");
 
         glob::build_matcher(&pattern)
     }

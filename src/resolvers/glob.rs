@@ -1,5 +1,5 @@
 use globset::{Error, GlobBuilder, GlobMatcher};
-use std::path::{Path, PathBuf, MAIN_SEPARATOR};
+use std::path::{MAIN_SEPARATOR, Path, PathBuf};
 
 use crate::filesystem;
 

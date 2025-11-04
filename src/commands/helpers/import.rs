@@ -7,7 +7,7 @@ use crate::config::ProjectConfig;
 use crate::dependencies::import::LocatedImport;
 use crate::filesystem;
 use crate::processors::ignore_directive::get_ignore_directives;
-use crate::processors::import::{get_normalized_imports, Result};
+use crate::processors::import::{Result, get_normalized_imports};
 use crate::resolvers::{PackageResolution, PackageResolutionError, PackageResolver};
 
 #[pyclass(get_all)]

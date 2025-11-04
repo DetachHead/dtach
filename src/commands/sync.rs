@@ -2,13 +2,13 @@ use thiserror::Error;
 
 use pyo3::prelude::*;
 
-use crate::commands::check::{check_internal, CheckError};
+use crate::commands::check::{CheckError, check_internal};
 use crate::config::edit::{ConfigEditor, EditError};
-use crate::config::root_module::{RootModuleTreatment, ROOT_MODULE_SENTINEL_TAG};
+use crate::config::root_module::{ROOT_MODULE_SENTINEL_TAG, RootModuleTreatment};
 use crate::config::{DependencyConfig, ProjectConfig};
 use crate::diagnostics::Diagnostic;
 use crate::filesystem::{self, validate_module_path};
-use crate::resolvers::{glob, SourceRootResolver, SourceRootResolverError};
+use crate::resolvers::{SourceRootResolver, SourceRootResolverError, glob};
 use std::collections::{HashMap, HashSet};
 use std::path::PathBuf;
 
@@ -50,12 +50,13 @@ fn handle_added_dependency(
             Ok(())
         }
         RootModuleTreatment::Forbid => Err(SyncError::RootModuleViolation(format!(
-            "The root module is forbidden, but it was found that '{}' depends on '{}'.",
-            module_path, dependency
+            "The root module is forbidden, but it was found that '{module_path}' depends on '{dependency}'."
         ))),
         RootModuleTreatment::DependenciesOnly => {
             if dependency_is_root {
-                return Err(SyncError::RootModuleViolation(format!("No module may depend on the root module, but it was found that '{}' depends on the root module.", module_path)));
+                return Err(SyncError::RootModuleViolation(format!(
+                    "No module may depend on the root module, but it was found that '{module_path}' depends on the root module."
+                )));
             }
             project_config.add_dependency(module_path.to_string(), dependency.to_string())?;
             Ok(())

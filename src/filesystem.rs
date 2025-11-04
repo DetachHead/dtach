@@ -37,8 +37,7 @@ pub fn file_to_module_path(source_roots: &[PathBuf], file_path: &Path) -> Result
         .iter()
         .find(|&root| file_path.starts_with(root))
         .ok_or(FileSystemError::Other(format!(
-            "No matching source root found for filepath: {:?}",
-            file_path
+            "No matching source root found for filepath: {file_path:?}"
         )))?;
 
     // Get the relative path from the matching root
@@ -56,8 +55,7 @@ pub fn file_to_module_path(source_roots: &[PathBuf], file_path: &Path) -> Result
     let mut components: Vec<_> = relative_path
         .parent()
         .ok_or(FileSystemError::Other(format!(
-            "Encountered invalid filepath: {:?}",
-            relative_path
+            "Encountered invalid filepath: {relative_path:?}"
         )))?
         .components()
         .filter_map(|component| component.as_os_str().to_str())
@@ -68,8 +66,7 @@ pub fn file_to_module_path(source_roots: &[PathBuf], file_path: &Path) -> Result
         .file_name()
         .and_then(|name| name.to_str())
         .ok_or(FileSystemError::Other(format!(
-            "Encountered invalid filepath: {:?}",
-            relative_path
+            "Encountered invalid filepath: {relative_path:?}"
         )))?;
 
     // If the file is not __init__.py, add its name (without extension) to the components
@@ -205,8 +202,8 @@ pub fn module_to_pyfile_or_dir_path<P: AsRef<Path>>(
 
         // Build paths
         let dir_path = source_root.join(&base_path);
-        let pyinterface_path = source_root.join(format!("{}.pyi", base_path));
-        let pyfile_path = source_root.join(format!("{}.py", base_path));
+        let pyinterface_path = source_root.join(format!("{base_path}.pyi"));
+        let pyfile_path = source_root.join(format!("{base_path}.py"));
 
         if dir_path.is_dir() {
             return Some(dir_path);
@@ -320,7 +317,7 @@ impl FSWalker {
 
         let mut override_builder = ignore::overrides::OverrideBuilder::new(project_root.as_ref());
         for path in exclude_paths {
-            override_builder.add(&format!("!{}", path))?;
+            override_builder.add(&format!("!{path}"))?;
         }
         let overrides = override_builder.build()?;
         walk_builder.overrides(overrides.clone());
