@@ -144,7 +144,6 @@ class ProjectConfig:
     exclude: list[str]
     source_roots: list[Path]
     exact: bool
-    disable_logging: bool
     ignore_type_checking_imports: bool
     include_string_imports: bool
     forbid_circular_dependencies: bool

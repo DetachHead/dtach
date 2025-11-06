@@ -16,4 +16,3 @@ source_roots = [
     "src/pack-f/src",
     "src/pack-g/src",
 ]
-disable_logging = true

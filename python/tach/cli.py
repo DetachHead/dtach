@@ -23,7 +23,7 @@ from tach.errors import (
 from tach.extension import Direction, ProjectConfig
 from tach.filesystem import install_pre_commit
 from tach.init import init_project
-from tach.logging import CallInfo, init_logging, logger
+from tach.logging import CallInfo, logger
 from tach.modularity import export_report, upload_report_to_gauge
 from tach.parsing import combine_exclude_paths, parse_project_config
 from tach.report import external_dependency_report, report
@@ -1169,9 +1169,6 @@ def main(argv: list[str] = sys.argv[1:]) -> None:
         )
     else:
         project_config = try_parse_project_config(project_root)
-
-    if project_config is None or not project_config.disable_logging:
-        init_logging(project_root)
 
     latest_version = cache.get_latest_version(project_root)
     if latest_version and current_version_is_behind(latest_version):

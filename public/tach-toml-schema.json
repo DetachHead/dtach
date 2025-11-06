@@ -386,11 +386,6 @@
       "type": "string",
       "description": "How to treat code outside of explicitly listed modules"
     },
-    "disable_logging": {
-      "type": "boolean",
-      "default": false,
-      "description": "Disable anonymized usage logging"
-    },
     "ignore_type_checking_imports": {
       "type": "boolean",
       "default": true,
