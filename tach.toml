@@ -94,8 +94,6 @@ layer = "core"
 [[modules]]
 path = "tach.logging"
 depends_on = [
-    "tach",
-    "tach.cache",
 ]
 layer = "core"
 
