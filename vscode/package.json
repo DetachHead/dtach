@@ -2,7 +2,7 @@
     "name": "dtach",
     "displayName": "DTach",
     "description": "a maintained fork of the abandoned `tach` linter",
-    "version": "0.31.1",
+    "version": "0.31.2",
     "preview": true,
     "serverInfo": {
         "name": "Tach",
