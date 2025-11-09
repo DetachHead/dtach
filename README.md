@@ -152,8 +152,7 @@ Tach also supports:
 - [Inline 'ignore' comments](https://detachhead.github.io/dtach/usage/tach-ignore)
 - [Pre-commit hooks](https://detachhead.github.io/dtach/usage/commands#tach-install)
 
-More info in the [docs](https://detachhead.github.io/dtach/). Tach logs anonymized usage statistics which can be [opted out](https://detachhead.github.io/dtach/usage/faq/) of.
-If you have any feedback, we'd love to talk!
+More info in the [docs](https://detachhead.github.io/dtach/). If you have any feedback, we'd love to talk!
 
 If you have any questions or run into any issues, let us know by submitting a [Github Issue](https://github.com/detachhead/dtach/issues)!
 
