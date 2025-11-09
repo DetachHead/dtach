@@ -596,7 +596,7 @@ wheels = [
 
 [[package]]
 name = "dtach"
-version = "0.31.1"
+version = "0.31.2"
 source = { editable = "." }
 dependencies = [
     { name = "gitpython" },
@@ -619,6 +619,7 @@ dev = [
     { name = "basedpyright" },
     { name = "build" },
     { name = "coverage" },
+    { name = "gnumake" },
     { name = "maturin" },
     { name = "pip" },
     { name = "pytest" },
@@ -665,6 +666,7 @@ dev = [
     { name = "basedpyright", specifier = ">=1.31.7" },
     { name = "build", specifier = "==1.2.1" },
     { name = "coverage", specifier = "==7.6.0" },
+    { name = "gnumake", specifier = ">=4.4.1" },
     { name = "maturin", specifier = "==1.7.1" },
     { name = "pip", specifier = "==24.0" },
     { name = "pytest", specifier = "==8.2.2" },
@@ -769,6 +771,28 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c0/89/37df0b71473153574a5cdef8f242de422a0f5d26d7a9e231e6f169b4ad14/gitpython-3.1.44.tar.gz", hash = "sha256:c87e30b26253bf5418b01b0660f818967f3c503193838337fe5e573331249269", size = 214196, upload-time = "2025-01-02T07:32:43.59Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1d/9a/4114a9057db2f1462d5c8f8390ab7383925fe1ac012eaa42402ad65c2963/GitPython-3.1.44-py3-none-any.whl", hash = "sha256:9e0e10cda9bed1ee64bc9a6de50e7e38a9c9943241cd7f585f6df3ed28011110", size = 207599, upload-time = "2025-01-02T07:32:40.731Z" },
+]
+
+[[package]]
+name = "gnumake"
+version = "4.4.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d1/53/30adf9cfb81c2948bcaef83766d81be76f0daade40e4db0677a528c6cc2d/gnumake-4.4.1.tar.gz", hash = "sha256:b12851878b5df40207a2aaf71f16aacd7c4ce22bc39a97cff38a5ae6a8fbd6be", size = 2644, upload-time = "2025-05-29T09:40:15.296Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/28/60/2745940357622907687d17dbc72483a11dc02b330a5e55eda083e71e1dac/gnumake-4.4.1-py2.py3-none-macosx_11_0_arm64.whl", hash = "sha256:fbefbfcfe97ba6ac314fe330cf9f4d54ea848ebd1317366f81e80e2c4bb9744d", size = 316282, upload-time = "2025-05-29T09:39:58.262Z" },
+    { url = "https://files.pythonhosted.org/packages/80/3d/56dbca97d356f457e43ec581b9b3806e253dd369f480e4f0f968e187366e/gnumake-4.4.1-py2.py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a23979ac0ef6f9aa85a3acaddf61798434959e94e1c4cfcd9ee4aa422fa09146", size = 1069086, upload-time = "2025-05-29T09:39:59.595Z" },
+    { url = "https://files.pythonhosted.org/packages/40/83/73d938d875c35416a74f54b46ae6ceee669aa1e6db582ca1e4149c275f73/gnumake-4.4.1-py2.py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:b644e6b9301926d0e024791e5083f73f12783a8dd4f33e8c63c064265a2da51b", size = 1047068, upload-time = "2025-05-29T09:40:00.655Z" },
+    { url = "https://files.pythonhosted.org/packages/9f/aa/e2a153ba1723acd2e9e950311f2cf6e4a2feafb20a723f06feab09695d74/gnumake-4.4.1-py2.py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:0341abd0c3b224a1edf19d2b70c4533d416b1eea774b50b1029a0618d21851c6", size = 1106821, upload-time = "2025-05-29T09:40:01.769Z" },
+    { url = "https://files.pythonhosted.org/packages/aa/56/5564d3363d4be077c6cae2ea541050b80caa17e32082185d78db088993f4/gnumake-4.4.1-py2.py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:f41a382e58b89b9dc085bce9516d4d31d3ed583f497daea94bec750e105fba92", size = 1076934, upload-time = "2025-05-29T09:40:02.885Z" },
+    { url = "https://files.pythonhosted.org/packages/c2/b3/bb120fbde8870f2b02cffef729c30b91018c6afb48fe6200a036fdfd438d/gnumake-4.4.1-py2.py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:cdf7777d769536a000b84648b69834457890c04054e9ea0efa9b68730a14f454", size = 1076481, upload-time = "2025-05-29T09:40:04.543Z" },
+    { url = "https://files.pythonhosted.org/packages/06/3c/1a82f60e2a2c0d05a183e6556ff521845993b075c6ff25d4009b35ffc02d/gnumake-4.4.1-py2.py3-none-manylinux_2_28_armv7l.manylinux_2_31_armv7l.whl", hash = "sha256:e6bf3190217609d0be46bb6aaa20d276dfcdd1775200c2f2f2001420c8e8255a", size = 1108423, upload-time = "2025-05-29T09:40:05.673Z" },
+    { url = "https://files.pythonhosted.org/packages/61/9b/e31391d4abbe514c632e2ae784dba14c4ed582ca1041febc119e9f014035/gnumake-4.4.1-py2.py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:29f6ea94a49eb1eacf3d689f0ec6f515e80a89e15fba48783249c62c8c8f7d12", size = 1134786, upload-time = "2025-05-29T09:40:07.102Z" },
+    { url = "https://files.pythonhosted.org/packages/65/82/765b3197746a0702701f0d44531efe6d6fef09d8b2e6cebd4a92bb3dbef1/gnumake-4.4.1-py2.py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:ff87d5d6fd6345bb9b2a8dd639d8391fc06c5fe80c8f9e2f57298d3d62062028", size = 1113245, upload-time = "2025-05-29T09:40:08.521Z" },
+    { url = "https://files.pythonhosted.org/packages/58/6b/ea201d91fcd9c6de3ac017497b42d1ec66e4eca3b48333f8f836021443af/gnumake-4.4.1-py2.py3-none-musllinux_1_2_i686.whl", hash = "sha256:737fd27ba4c93a57afa6fb4d28254fd9e8c5761371184940753cce3080985ea5", size = 1119074, upload-time = "2025-05-29T09:40:09.887Z" },
+    { url = "https://files.pythonhosted.org/packages/59/d0/e8d5354c31e4c99e1ff36e45d431db34320b296e54c4a3091efb75a3d01d/gnumake-4.4.1-py2.py3-none-musllinux_1_2_ppc64le.whl", hash = "sha256:a3e4a781b800c72cbdffc861a1d27bd48e792c689b0d1011ec2621d72e1a282d", size = 1166170, upload-time = "2025-05-29T09:40:11.186Z" },
+    { url = "https://files.pythonhosted.org/packages/54/40/518dd6949ebe2e98135e117d6489c735fb054c87c34b42011ab1e78c4497/gnumake-4.4.1-py2.py3-none-musllinux_1_2_s390x.whl", hash = "sha256:15754f744c8c571e30430d988936e0b987bdaddba015fa4bdd4d7d78b7b7da11", size = 1147931, upload-time = "2025-05-29T09:40:12.292Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/9d/455f389401ad1f164c8f6e9657730060348e30ec8621160e11ba98a4562e/gnumake-4.4.1-py2.py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:4a29eb69a21bd4f6de85ab003adc00b6dd563e4d76f53b3614ab4b3c973cbd0b", size = 1137585, upload-time = "2025-05-29T09:40:13.326Z" },
+    { url = "https://files.pythonhosted.org/packages/10/ea/f84dc2f26d70139541a3593c93929b848d6e93b3509e50f881182e330157/gnumake-4.4.1-py2.py3-none-win_amd64.whl", hash = "sha256:005199e088469a4fbb862eed5957c20bdf60e99b8323d90a32096332303cc033", size = 4820097, upload-time = "2025-06-19T20:39:33.758Z" },
 ]
 
 [[package]]

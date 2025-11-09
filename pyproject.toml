@@ -61,6 +61,7 @@ dev = [
     "setuptools==69.5.1",
     "twine==5.1.1",
     "build==1.2.1",
+    "gnumake>=4.4.1",
     # Tests
     "pytest==8.2.2",
     "pytest-mock==3.14.0",
