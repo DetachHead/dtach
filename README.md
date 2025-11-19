@@ -1,7 +1,7 @@
 # DTach
 
 > [!IMPORTANT]
-> DTach is a fork of the unmaintained [tach](https://github.com/gauge-sh/tach) project.
+> DTach was forked from [tach](https://github.com/gauge-sh/tach) because it was unmaintained, however they have since transferred the repo to a separate organization and made me a maintainer, so this fork is no longer necessary and is now archived. all changes in this fork have now been merged into the upstream repo.
 
 [![downloads](https://static.pepy.tech/badge/dtach/month)](https://pepy.tech/project/dtach)
 [![version](https://img.shields.io/pypi/v/dtach.svg)](https://pypi.Python.org/pypi/dtach)
